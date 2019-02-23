@@ -2,7 +2,6 @@ package com.example.anquanweishi;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.animation.AlphaAnimation;
 
 public class SplashActivity extends Activity {
@@ -22,11 +21,11 @@ public class SplashActivity extends Activity {
         AlphaAnimation aa = new AlphaAnimation(0.0f,1.0f);
         aa.setDuration(3000);
         aa.setFillAfter(true);
-        rl_root.startAnimation(aa);
+//        rl_root.startAnimation(aa);
 
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//
+//    }
 }

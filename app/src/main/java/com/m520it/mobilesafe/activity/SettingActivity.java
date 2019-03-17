@@ -1,4 +1,4 @@
-package com.m520it.mobilsafe.activity;
+package com.m520it.mobilesafe.activity;
 
 /**
  * @author Administrator
@@ -7,5 +7,5 @@ package com.m520it.mobilsafe.activity;
  * @updateAuthor $Author$
  * @updateDes ${TODO}
  */
-class RequestCallBack<T> {
+class SettingActivity {
 }

@@ -1,4 +1,4 @@
-package com.m520it.mobilesafe.utils;
+package com.m520it.mobilsafe.utils;
 
 
 import android.content.Context;

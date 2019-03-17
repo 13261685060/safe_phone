@@ -1,4 +1,4 @@
-package com.m520it.mobilesafe;
+package com.m520it.mobilsafe;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

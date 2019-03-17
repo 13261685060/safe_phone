@@ -1,4 +1,4 @@
-package com.m520it.mobilsafe.views;
+package com.m520it.mobilesafe.views;
 
 /**
  * @author Administrator
@@ -7,5 +7,5 @@ package com.m520it.mobilsafe.views;
  * @updateAuthor $Author$
  * @updateDes ${TODO}
  */
-public class FocusTextView {
+public class SettingItemView {
 }

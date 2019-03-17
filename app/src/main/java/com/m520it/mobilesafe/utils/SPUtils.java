@@ -1,9 +1,9 @@
-package com.m520it.mobilesafe.utils;
+package com.m520it.mobilsafe.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.m520it.mobilesafe.views.Constant;
+import com.m520it.mobilsafe.views.Constant;
 
 /**
  * @author Administrator

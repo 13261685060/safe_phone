@@ -1,4 +1,4 @@
-package com.m520it.mobilsafe.views;
+package com.m520it.mobilesafe.views;
 
 /**
  * @author Administrator
@@ -14,7 +14,7 @@ public class Constant {
     public static final String FINISH="finish";
 
     public class URL{
-        public static final String BASEURL = "http://192.168.35.10:8080/";
-        public static final String UPDATEURL=BASEURL+"info.json";
+        public static final String BASEURL = "http://192.168.3.45:8080/";
+        public static final String UPDATEURL=BASEURL+"update.json";
     }
 }

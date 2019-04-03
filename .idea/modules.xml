@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/apidev/apidev.iml" filepath="$PROJECT_DIR$/apidev/apidev.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/mytoast/mytoast.iml" filepath="$PROJECT_DIR$/mytoast/mytoast.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rocket/rocket.iml" filepath="$PROJECT_DIR$/rocket/rocket.iml" />
     </modules>
   </component>
 </project>

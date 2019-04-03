@@ -10,6 +10,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -32,6 +34,8 @@ public class ShowAddresssServer extends Service {
     private InnerCallOutReceiver receiver;
     private WindowManager mWM;
     private View view;
+    private int startX;
+    private int startY;
 
     @Nullable
     @Override
@@ -112,20 +116,74 @@ public class ShowAddresssServer extends Service {
         params.width = WindowManager.LayoutParams.WRAP_CONTENT;
         params.format = PixelFormat.TRANSLUCENT;
 
-
-        params.type = WindowManager.LayoutParams.TYPE_TOAST;
+        //指明当前的Windowmanager显示的控件是什么
+        params.type = WindowManager.LayoutParams.TYPE_PRIORITY_PHONE;
         params.setTitle("Toast");
+        //必须去掉不能触摸的属性
         params.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
                 | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         view = View.inflate(getApplicationContext(), R.layout.view_toast,null);
-       LinearLayout ll_background = (LinearLayout) view.findViewById(R.id.ll_show);
 
+        params.gravity = Gravity.LEFT+Gravity.TOP;//设置吐司默认的位置到左上角
+        params.x = SPUtils.getInt(getApplicationContext(),Constant.X);
+        params.y = SPUtils.getInt(getApplicationContext(),Constant.Y);
+       LinearLayout ll_background = (LinearLayout) view.findViewById(R.id.ll_show);
         int which = SPUtils.getInt(getApplicationContext(), Constant.WHICHBACKGROUND);
        ll_background.setBackgroundResource(icons[which]);
        TextView tv = (TextView) view.findViewById(R.id.tv_location);
        tv.setText(address);
         mWM.addView(view, mParams);
 
+        view.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent){
+                switch (motionEvent.getAction()){
+                    case MotionEvent.ACTION_DOWN://手指放下去
+                        //1先获得手指放下去的坐标
+                        startX = (int)(motionEvent.getRawX());
+                        startY = (int)(motionEvent.getRawY());
 
+                        break;
+                    case MotionEvent.ACTION_MOVE://手指移动
+
+                        //2获得移动后的坐标
+                        int newX = (int)(motionEvent.getRawX());
+                        int newY = (int)(motionEvent.getRawX());
+
+                        //3获得两个坐标的差值
+                        int dx = newX-startX;
+                        int dy = newY-startY;
+
+                        //4 移动控件
+                        //view.layout()只能在activity中使用
+                        params.x+=dx;
+                        params.y+=dy;
+
+                        if(params.x<0) params.x = 0;
+                        if(params.y<0) params.x = 0;
+                        if (params.x>mWM.getDefaultDisplay().getWidth()-view.getWidth()){
+                            params.x = mWM.getDefaultDisplay().getWidth()-view.getWidth();
+                        }
+                        if (params.y>mWM.getDefaultDisplay().getWidth()-view.getWidth()){
+                            params.y = mWM.getDefaultDisplay().getWidth()-view.getWidth();
+                        }
+
+                        //通知mWM移动
+                        mWM.updateViewLayout(view,params);
+                        startX = (int)(motionEvent.getRawX());
+                        startY = (int)(motionEvent.getRawY());
+                        break;
+                    case MotionEvent.ACTION_UP://手指抬起
+
+                        SPUtils.putInt(getApplicationContext(),Constant.X,params.x);
+                        SPUtils.putInt(getApplicationContext(),Constant.Y,params.y);
+                        break;
+
+
+                }
+                return false;
+            }
+
+        });
     }
 }

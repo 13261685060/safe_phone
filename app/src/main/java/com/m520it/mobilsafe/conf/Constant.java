@@ -15,10 +15,12 @@ public class Constant {
     public static final String PROTOCOTING = "protocoting";
     public static final String BLACKINTERFACE = "blackinterface";
     public static final String WHICHBACKGROUND = "whichbackground";
+    public static String X;
+    public static String Y;
 
     public static class URL{
-        public static final String BASEURL="http://192.168.35.10:8080/";
-        public  static  final String UPDATEURL=BASEURL+"info.json";
+        public static final String BASEURL="http://192.168.3.45:8080/";
+        public  static  final String UPDATEURL=BASEURL+"update.json";
 
     }
 }

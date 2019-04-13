@@ -3,9 +3,12 @@ package com.m520it.mobilsafe.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.m520it.mobilsafe.R;
 import com.m520it.mobilsafe.utils.IntentUtils;
+import com.m520it.mobilsafe.utils.SmsTools;
 
 /**
  * @author 王维波
@@ -13,6 +16,8 @@ import com.m520it.mobilsafe.utils.IntentUtils;
  * @desc ${TODD}
  */
 public class AtoolActivity extends Activity {
+    private ProgressBar pb;
+    private Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,9 +26,35 @@ public class AtoolActivity extends Activity {
 
     private void initView() {
         setContentView(R.layout.activity_atool);
+        pb = (ProgressBar)findViewById(R.id.pb);
+        btn=(Button)findViewById(R.id.btn);
     }
 
     public  void queryAddress(View v){
         IntentUtils.startIntent(AtoolActivity.this,ShowAddressActivity.class);
     }
+
+    public void SelectCommonContact(){
+        IntentUtils.startIntent(AtoolActivity.this,CommonActivity.class);
+    }
+    public void smsBackup(View view){
+
+        new Thread(){
+            public void run(){
+                boolean result = SmsTools.smsBackup(AtoolActivity.this, "smsbackup.xml", new SmsTools.BackupSms() {
+                    @Override
+                    public void beforeBackup(int max) {
+                        pb.setMax(max);
+                    }
+
+                    @Override
+                    public void backuping(int process) {
+                        pb.setProgress(process);
+
+                    }
+                });
+            }
+        }.start();
+    }
+
 }

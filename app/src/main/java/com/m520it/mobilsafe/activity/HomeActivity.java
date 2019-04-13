@@ -115,7 +115,8 @@ public class HomeActivity extends Activity {
                         IntentUtils.startIntent(HomeActivity.this,BlackNumberActivity.class);
 
                         break;
-                    case 2:
+                    case 2://软件管理
+                        IntentUtils.startIntent(HomeActivity.this,AppManagerActivity.class);
 
                         break;
                     case 3:

@@ -43,6 +43,8 @@
         <activity android:name=".activity.BlackNumberActivity"/>
         <activity android:name=".activity.AtoolActivity"/>
         <activity android:name=".activity.ShowAddressActivity"/>
+        <activity android:name=".activity.CommonActivity"/>
+        <activity android:name=".activity.AppManagerActivity"/>
 
         <receiver android:name=".receiver.BootCompleteReceiver">
             <intent-filter>

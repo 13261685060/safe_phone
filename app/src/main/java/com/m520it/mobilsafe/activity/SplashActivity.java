@@ -156,24 +156,25 @@ public class SplashActivity extends Activity {
         //初始化事件
         initEvent();
         //复制数据库
-        copyDb();
+        copyDb("address.db");
+        copyDb("commonnum.db");
     }
 
     /**
      * 1 放在子线程中复制
      * 2 不是每次都需要复制
      */
-    private void copyDb() {
+    private void copyDb(final String name) {
         new Thread() {
             public void run() {
 
-                File file = new File(getFilesDir(), "address.db");
+                File file = new File(getFilesDir(), name);
                 if (file.exists() && file.length() > 0) {
 
                 }else {
                     InputStream in = null;
                     try {
-                        in = getAssets().open("address.db");
+                        in = getAssets().open(name);
 
                         FileOutputStream fos = new FileOutputStream(file);
                         int len = 0;
